@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Trump Maths Quiz</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
+    <script defer src="JS/index.js"></script>
+
+    <style>
+        @import url("Styling/CSS/global.css");
+        @import url("Styling/CSS/login.css");
+    </style>
+</head>
+<body>
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="form" id="signin">
+        <div id="formCont">
+            <h1>Math Quiz | Sign in</h1>
+            <div>
+                <label for="email">E-Mail:</label>
+                <input oninput="updateEmailUI_login(this)" onblur="updateEmailUI_login(this)" id="email_login" type="email" name="email" />
+                <label id="invem_login" style="margin-top: 0; color:red; font-size: 12px; display: none;">This field cannot be
+                    blank.</label>
+            </div>
+    
+            <div>
+                <label for="password">Password:</label>
+                <input oninput="updatePassUI_login(this)" onblur="updatePassUI_login(this)" id="password_login" type="password"
+                    name="password" />
+                <label id="invpass_login" style="margin-top: 0; color:red; font-size: 12px; display: none;">This field cannot be
+                    blank.</label>
+            </div>
+            <button disabled id="submit_login" onclick="signIn()">Sign in</button>
+            <p style="margin-top: 30px;">Don't have an account? <a class="roundButton" onclick="$('#signup').css('display', 'block'); $('#signin').css('display', 'none');">Sign up</a></p>
+        </div>
+    </div>
+
+    <div class="form" id="signup">
+        <div id="formCont">
+            <h1>Math Quiz | Sign Up</h1>
+            <div>
+                <label for="email">E-Mail:</label>
+                <input oninput="updateEmailUI_signup(this)" onblur="updateEmailUI_signup(this)" id="email_signup" type="email" name="email" />
+                <label id="invem_signup" style="margin-top: 0; color:red; font-size: 12px; display: none;">E-Mail is
+                    invalid.</label>
+            </div>
+    
+            <div>
+                <label for="username">Username:</label>
+                <input oninput="updateUsernameUI_signup(this)" onblur="updateUsernameUI_signup(this)" id="username" type="text"
+                    name="username" />
+                <label id="invusr" style="margin-top: 0; color:red; font-size: 12px; display: none;">A username can only
+                    contain A-Z, a-z, 0-9, - _ .</label>
+            </div>
+    
+            <div>
+                <label for="password">Password:</label>
+                <input oninput="updatePassUI_signup(this)" onblur="updatePassUI_signup(this)" id="password_signup" type="password"
+                    name="password" />
+                <label id="invpass_signup" style="margin-top: 0; color:red; font-size: 12px; display: none;">Password is
+                    invalid.</label>
+                <label id="reqs" style="text-align: left; font-size: 12px; color: #d3d3d3">
+                    <p>Password is 6 characters or longer</p>
+                    <p>Contains an Uppercase English character</p>
+                    <p>Contains a Lowercase English character</p>
+                    <p>Contains a digit</p>
+                    <p>Contains a Special character (!, ?, @, ^, etc.)</p>
+                </label>
+            </div>
+            <button disabled id="submit_signup" onclick="signUp()">Sign Up</button>
+            <p style="margin-top: 30px;">Already a user? <a class="roundButton" onclick="$('#signup').css('display', 'none'); $('#signin').css('display', 'block');">Sign in</a></p>
+        </div>
+    </div>
+    
+    
+</body>
+
+</html>

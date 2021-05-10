@@ -1,0 +1,12 @@
+{
+  "name": "trump-maths-v2",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "EliasVal",
+  "license": "Unlicense",
+  "dependencies": {
+    "firebase": "^8.5.0",
+    "jquery": "^3.6.0"
+  }
+}
