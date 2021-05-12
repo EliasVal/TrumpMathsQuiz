@@ -10,6 +10,7 @@ html, body {
     height: 100%;
     position: relative;
     font-family: 'Roboto', sans-serif;
+    background-color: #171717;
 }
 
 .roundButton {
@@ -23,11 +24,8 @@ html, body {
     color: black;
 }
 
-a.roundButton,
-button.roundButton {
+a,
+button {
     cursor: pointer;
-}
-
-a, button {
     @include mixins.unselectable
 }

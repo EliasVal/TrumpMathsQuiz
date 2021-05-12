@@ -8,5 +8,8 @@
   "dependencies": {
     "firebase": "^8.5.0",
     "jquery": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.5"
   }
 }

@@ -12,11 +12,11 @@ firebase.default.initializeApp({
     appId: "1:534763888909:web:b4b21a3e411e0a09bc1044"
 })
 
-firebase.default.auth().onAuthStateChanged((user) => {
+/*firebase.default.auth().onAuthStateChanged((user) => {
     if (user) {
         window.location.pathname = "/main"
     }
-})
+})*/
 
 
 // ALIGN FORM LABELS
@@ -81,7 +81,7 @@ function signIn() {
         firebase.default.auth().signInWithEmailAndPassword(email, pass)
         .then((user) => {
             console.log(user)
-            window.location.pathname = "/homepage.html"
+            window.location.pathname = "/main"
         })
         .catch((error) => {
             var errorMessage = error.message;
@@ -119,6 +119,8 @@ function signUp(/*email, password*/) {
         }).catch((e) => {
             var errorMessage = e.message;
             alert(errorMessage)
+        }).then(() => {
+            window.location.pathname = "/main"
         })
         // Signed in 
         // ...

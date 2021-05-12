@@ -16,4 +16,5 @@ declare global {
     interface Element {
         style: CSSStyleDeclaration
     }
+    var fbUser: firebase.default.User
 }
