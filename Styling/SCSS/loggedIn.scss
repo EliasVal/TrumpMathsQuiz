@@ -7,7 +7,7 @@ nav {
     position: sticky;
     background-color: rgb(26, 26, 26);
     box-shadow: 0px 3px 15px 0px rgba(255, 255, 255, 0.20);
-    height: 53px;
+    height: 64px;
     div {
         position: absolute;
         margin: 15px;
@@ -15,5 +15,8 @@ nav {
     }
     div:nth-child(1){
         right: 0;
+    }
+    div:nth-child(2) {
+        margin: 22px 0 0 15px;
     }
 }

@@ -1,1 +1,52 @@
-*{margin:0;padding:0}html,body{height:100%;position:relative;font-family:"Roboto",sans-serif;background-color:#171717}.roundButton{display:inline-block;padding:7px;background:none;border:1px solid #a9a9a9;border-radius:5px;font-size:15px;text-decoration:none;color:#000}a,button{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}/*# sourceMappingURL=global.css.map */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  background-color: #171717;
+}
+
+.btn {
+  display: inline-block;
+  padding: 7px;
+  border: 1px solid #5e5e5e;
+  border-radius: 5px;
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s;
+}
+.btn-warn {
+  background-color: #ee1141;
+  color: white;
+}
+.btn-warn-dark {
+  background-color: #bf0d34;
+  color: white;
+}
+.btn-warn:hover {
+  background-color: #801028;
+}
+.btn-warn-dark:hover {
+  background-color: #f02854;
+}
+.btn-confirm {
+  background-color: #19b819;
+  color: white;
+}
+.btn-confirm:hover {
+  background-color: #127512;
+}
+
+a,
+button {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}/*# sourceMappingURL=global.css.map */

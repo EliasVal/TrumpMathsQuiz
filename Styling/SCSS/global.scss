@@ -13,15 +13,36 @@ html, body {
     background-color: #171717;
 }
 
-.roundButton {
+.btn {
     display: inline-block;
     padding: 7px;
-    background: none;
-    border: 1px solid darkgray;
+    border: 1px solid rgb(94, 94, 94);
     border-radius: 5px;
     font-size: 15px;
     text-decoration: none;
     color: black;
+    transition: 0.2s;
+    &-warn {
+        background-color: hsl(347, 87%, 50%);
+        color: white;
+        &-dark {
+            background-color: hsl(347, 87%, 40%);
+            color:white;
+        }
+    }
+    &-warn:hover {
+        background-color: rgb(128, 16, 40);
+    }
+    &-warn-dark:hover {
+        background-color: hsl(347, 87%, 55%);
+    }
+    &-confirm {
+        background-color: rgb(25, 184, 25);
+        color:white;
+    }
+    &-confirm:hover {
+        background-color: rgb(18, 117, 18);
+    }
 }
 
 a,

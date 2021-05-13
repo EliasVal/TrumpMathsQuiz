@@ -19,11 +19,27 @@
 <body>
     <nav>
         <div>
-            <a onclick="firebase.default.auth().signOut()">Sign out</a>
+            <a onclick="firebase.default.auth().signOut()" class="btn btn-warn">Sign out</a>
         </div>
         <div>
             <p id="usrname"></p>
         </div>
     </nav>
+    <div id="searchGame" style="text-align: center; margin-top: 25px;">
+        <a id="playBtn" class="btn btn-confirm" onclick="StartGame(); $('#searchGameCommenced').css('display', 'initial'); this.style.display = 'none'">Play</a>
+        <div id="searchGameCommenced" style="display: none;">
+            <p>Looking for an opponent...</p>
+            <a style="margin-top: 30px;" class="btn btn-warn" onclick="dispatchEvent(gameCancelEvent); $('#playBtn').css('display', 'initial'); $('#searchGameCommenced').css('display', 'none')">Cancel Search</a>
+        </div>
+        
+    </div>
+    <div id="game">
+        <div id="questionsTab">
+
+        </div>
+        <div id="enemyInfo">
+
+        </div>
+    </div>
 </body>
 </html>
