@@ -16,7 +16,7 @@
         @import url('/Styling/CSS/loggedIn.css');
     </style>
 </head>
-<body>
+<body onresize="reactiveElms()">
     <nav>
         <div>
             <a onclick="firebase.default.auth().signOut()" class="btn btn-warn">Sign out</a>
@@ -35,10 +35,32 @@
     </div>
     <div id="game">
         <div id="questionsTab">
+            <h1>Question:</h1>
+            <div id="questionContainer">
+                <p dir="rtl"  id="questionHeader"></p>
+                <img id="questionImage">
+                <div id="questionAnswers">
 
+                </div>
+            </div>
         </div>
+        <vl id="sperator"></vl>
         <div id="enemyInfo">
-
+            <h1>Opponent info:</h1>
+            <div>
+                <ul>
+                    <li>
+                        Name: <p id="name"></p>
+                    </li>
+                    <li>
+                        Wins: <p id="wins"></p>
+                    </li>
+                    <li>
+                        Loses: <p id="loses"></p>
+                    </li>
+                </ul>
+            </div>
+            
         </div>
     </div>
 </body>

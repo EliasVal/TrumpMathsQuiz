@@ -18,7 +18,10 @@ html, body {
   font-size: 15px;
   text-decoration: none;
   color: black;
-  transition: 0.2s;
+  transition: 0.3s;
+}
+.btn:hover {
+  background-color: #c4c4c4;
 }
 .btn-warn {
   background-color: #ee1141;
@@ -28,11 +31,11 @@ html, body {
   background-color: #bf0d34;
   color: white;
 }
-.btn-warn:hover {
-  background-color: #801028;
-}
 .btn-warn-dark:hover {
   background-color: #f02854;
+}
+.btn-warn:hover {
+  background-color: #801028;
 }
 .btn-confirm {
   background-color: #19b819;

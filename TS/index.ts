@@ -12,11 +12,13 @@ firebase.default.initializeApp({
     appId: "1:534763888909:web:b4b21a3e411e0a09bc1044"
 })
 
-/*firebase.default.auth().onAuthStateChanged((user) => {
+/*let loginListener = firebase.default.auth().onAuthStateChanged((user) => {
     if (user) {
         window.location.pathname = "/main"
     }
+    loginListener();
 })*/
+
 
 
 // ALIGN FORM LABELS
@@ -120,7 +122,14 @@ function signUp(/*email, password*/) {
             var errorMessage = e.message;
             alert(errorMessage)
         }).then(() => {
-            window.location.pathname = "/main"
+            let db = firebase.default.database()
+            db.ref(`/users/${firebase.default.auth().currentUser.uid}`).update({
+                name: username,
+                wins: 0,
+                loses: 0
+            }).then(() => {
+                window.location.pathname = "/main"
+            })
         })
         // Signed in 
         // ...

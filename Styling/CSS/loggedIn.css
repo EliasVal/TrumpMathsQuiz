@@ -1,1 +1,102 @@
-*{color:#fff}nav{position:sticky;background-color:#1a1a1a;box-shadow:0px 3px 15px 0px rgba(255,255,255,.2);height:64px}nav div{position:absolute;margin:15px;font-size:1.2rem}nav div:nth-child(1){right:0}nav div:nth-child(2){margin:22px 0 0 15px}/*# sourceMappingURL=loggedIn.css.map */
+* {
+  color: white;
+}
+
+nav {
+  position: sticky;
+  background-color: #1a1a1a;
+  box-shadow: 0px 3px 15px 0px rgba(255, 255, 255, 0.2);
+  height: 64px;
+}
+nav div {
+  position: absolute;
+  margin: 15px;
+  font-size: 1.2rem;
+}
+nav div:nth-child(1) {
+  right: 0;
+}
+nav div:nth-child(2) {
+  margin: 22px 0 0 15px;
+}
+
+#game {
+  width: 100%;
+  position: relative;
+  display: none;
+}
+#game #questionsTab, #game #enemyInfo {
+  width: 50%;
+  position: absolute;
+}
+#game #enemyInfo {
+  right: 0;
+}
+#game #enemyInfo div {
+  width: 25%;
+  margin: 0 auto;
+}
+#game #enemyInfo div ul {
+  margin-top: 25px;
+  position: relative;
+}
+#game #enemyInfo div ul li {
+  margin-top: 7px;
+  list-style: none;
+  text-align: left;
+}
+#game #enemyInfo div ul li p {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+#game #questionsTab > div {
+  width: 80%;
+  margin: 25px auto 0 auto;
+}
+#game #questionsTab > div img {
+  max-height: 370px;
+  width: auto;
+  display: block;
+  margin: 10px auto 0 auto;
+}
+#game #questionsTab > div > p code {
+  line-height: 2;
+  margin: 0 5px;
+  border: #838383 1px solid;
+  border-radius: 3px;
+  padding: 2px 5px;
+  white-space: nowrap;
+}
+#game #questionsTab > div > div {
+  text-align: center;
+}
+#game #questionsTab > div > div p, #game #questionsTab > div > div input {
+  display: inline;
+}
+#game #questionsTab > div > div input {
+  width: 4.5ch;
+  text-align: center;
+  margin: 0 3px;
+  color: black;
+}
+#game #questionsTab > div > div input:focus {
+  outline: none;
+}
+#game #questionsTab > div > div button {
+  margin-top: 35px;
+}
+#game div {
+  margin-top: 25px;
+}
+#game div h1 {
+  text-align: center;
+}
+
+vl {
+  border-left: 6px solid #838383;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}/*# sourceMappingURL=loggedIn.css.map */

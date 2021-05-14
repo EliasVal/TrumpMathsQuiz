@@ -20,3 +20,91 @@ nav {
         margin: 22px 0 0 15px;
     }
 }
+
+#game {
+    width: 100%;
+    position: relative;
+    display: none;
+    #questionsTab, #enemyInfo {
+        width: 50%;
+        position: absolute;
+    }
+    #enemyInfo {
+        right: 0;
+        div {
+            width: 25%;
+            margin: 0 auto;
+            ul {
+                margin-top: 25px;
+                position: relative;
+                li {
+                    margin-top: 7px;
+                    p {
+                        display: inline-block;
+                        position: absolute;
+                        right: 0;
+                    }
+                    list-style: none;
+                    text-align: left;
+                }
+            }
+        }
+    }
+    #questionsTab {
+        > div {
+            width: 80%;
+            margin: 25px auto 0 auto;
+
+            img {
+                max-height: 370px;
+                width: auto;
+                display: block;
+                margin: 10px auto 0 auto;
+
+            }
+            > p {
+                code {
+                    line-height: 2;
+                    margin: 0 5px;
+                    border: rgb(131, 131, 131) 1px solid;
+                    border-radius: 3px;
+                    padding: 2px 5px;
+                    white-space: nowrap;
+                }
+            }
+            > div {
+                text-align: center;
+                p, input {
+                    display: inline;
+                }
+                input {
+                    width: 4.5ch;
+                    text-align: center;
+                    margin: 0 3px;
+                    color: black;
+                    &:focus {
+                        outline: none;
+                    }
+                }
+                button {
+                    margin-top: 35px
+                }
+            }
+        }
+        
+    }
+    div {
+        margin-top: 25px;
+        h1 {
+            text-align: center;
+        }
+    }
+}
+
+vl {
+    border-left: 6px solid rgb(131, 131, 131);
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+}

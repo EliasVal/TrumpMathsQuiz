@@ -8,7 +8,7 @@
             "notAnswers": [-2, 2, 4, -4] 
         },
         {
-            "question": "נתונה פרובולה שמשוואתה <code>y = -2x&#178; - 4x + 6</code> ועוברת דרך פרבולה זאת הישר <code>y = 2x + 6</code> חשבו את A, B, C?",
+            "question": "נתונה פרובולה שמשוואתה <code>y = -2x&#178; - 4x + 6</code> ועוברת דרך פרבולה זאת הישר <code>y = 2x + 6</code> חשבו את A, B, C:",
             "link": "https://cdn.discordapp.com/attachments/811560585552461844/822948271600697404/unknown.png",
             "answerType": "multi",
             "answers" : [ [-3, 0], [0, 6], [1, 0]],
@@ -29,7 +29,7 @@
             "notAnswers": [6, -6]
         },
         {
-            "question": "במערכת הצירים שלפניכם משורטטים הגרפים של הפונקציות <code>y = -x + 6</code>, <code>y = x&#178; - 5x + 6</code> מה הם שיורי נקודות A, C, D?",
+            "question": "במערכת הצירים שלפניכם משורטטים הגרפים של הפונקציות <code>y = -x + 6</code>, <code>y = x&#178; - 5x + 6</code> מה הם שיורי נקודות A, C, D:",
             "link": "https://cdn.discordapp.com/attachments/811560585552461844/822947945863315516/Capture.PNG",
             "answerType": "multi",
             "answers" : [ [0, 6], [2, 0], [3, 0] ],
