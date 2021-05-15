@@ -50,6 +50,7 @@ nav {
             }
         }
     }
+
     #questionsTab {
         > div {
             width: 80%;
@@ -82,10 +83,14 @@ nav {
                     text-align: center;
                     margin: 0 3px;
                     color: black;
+                    border: 1px gray solid;
+                    border-radius: 2px;
+                    padding: 2px;
                     &:focus {
                         outline: none;
                     }
                 }
+
                 button {
                     margin-top: 35px
                 }
@@ -107,4 +112,29 @@ vl {
     left: 50%;
     margin-left: -3px;
     top: 0;
+}
+
+#res {
+    h1 {
+        text-align: center;
+        margin-top: 25px;
+    }
+    div {
+        width: 25%;
+        margin: 0 auto;
+        ul {
+            margin-top: 25px;
+            position: relative;
+            li {
+                margin-top: 7px;
+                p {
+                    display: inline-block;
+                    position: absolute;
+                    right: 0;
+                }
+                list-style: none;
+                text-align: left;
+            }
+        }
+    }
 }

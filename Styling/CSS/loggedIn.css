@@ -79,6 +79,9 @@ nav div:nth-child(2) {
   text-align: center;
   margin: 0 3px;
   color: black;
+  border: 1px gray solid;
+  border-radius: 2px;
+  padding: 2px;
 }
 #game #questionsTab > div > div input:focus {
   outline: none;
@@ -99,4 +102,27 @@ vl {
   left: 50%;
   margin-left: -3px;
   top: 0;
+}
+
+#res h1 {
+  text-align: center;
+  margin-top: 25px;
+}
+#res div {
+  width: 25%;
+  margin: 0 auto;
+}
+#res div ul {
+  margin-top: 25px;
+  position: relative;
+}
+#res div ul li {
+  margin-top: 7px;
+  list-style: none;
+  text-align: left;
+}
+#res div ul li p {
+  display: inline-block;
+  position: absolute;
+  right: 0;
 }/*# sourceMappingURL=loggedIn.css.map */

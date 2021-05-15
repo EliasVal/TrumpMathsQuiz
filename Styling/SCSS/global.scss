@@ -53,3 +53,7 @@ button {
     cursor: pointer;
     @include mixins.unselectable
 }
+
+.unselectable {
+    @include mixins.unselectable
+}

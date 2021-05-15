@@ -1,12 +1,103 @@
 $("#usrname").html(fbUser.displayName)
+sessionStorage.removeItem("waitingFinish")
 
 var globalData: Array<Question>
 $.getJSON('/questions.json', (data: object) => {
     globalData = data["questions"]
+    //displayQuestion(0)
 })
-
+var questionIdx = 0
+var score = 0
 function Submit() {
+    $($('#questionAnswers').children("button")[0]).attr("onclick", null)
+    for (let elm of $('#questionAnswers').children('div').children("input")) {
+        $(elm).attr("readonly", "")
+        $(elm).addClass("unselectable")
+    }
+    let question = globalData[questionIdx]
+    let ppa;
+    let possibleAnswers = question.answers
 
+    if (question.answerType == "x") {
+        ppa = 100 / (question.answers.length + question.notAnswers.length)
+        let possibleNotAnswers = question.notAnswers
+        for (let elm of $('#questionAnswers').children('div').children('.ans')) {
+
+            if (possibleAnswers.includes(parseFloat(elm.value))) {
+                possibleAnswers.splice(possibleAnswers.indexOf(parseFloat(elm.value)), 1)
+                elm.style.backgroundColor = "#68c653"
+                score += ppa
+            }
+            else {
+                elm.style.backgroundColor = "#8b0000"
+                elm.style.color = "#FFFFFF"
+            }
+        }
+        for (let elm of $('#questionAnswers').children('div').children('.notAns')) {
+            if (possibleNotAnswers.includes(parseFloat(elm.value))) {
+                possibleNotAnswers.splice(possibleNotAnswers.indexOf(parseFloat(elm.value)), 1)
+                elm.style.backgroundColor = "#68c653"
+                score += ppa
+            }
+            else {
+                elm.style.backgroundColor = "#8b0000"
+                elm.style.color = "#FFFFFF"
+            }
+        }
+    }
+    else if (question.answerType == "multi") {
+        ppa = 100 / (question.answers.length * 2)
+        let elms = $('#questionAnswers').children('div').children('.ans');
+        let checkQuestionIdx = 0
+        for (let i = 0; i < elms.length; i+=2, checkQuestionIdx++) {
+            if (possibleAnswers[checkQuestionIdx][0] == parseFloat(elms[i].value)) {
+                score += ppa
+                elms[i].style.backgroundColor = "#68c653"
+            }
+            else {
+                elms[i].style.backgroundColor = "#8b0000"
+                elms[i].style.color = "#FFFFFF"
+            }
+            if (possibleAnswers[checkQuestionIdx][1] == parseFloat(elms[i+1].value)) {
+                score += ppa
+                elms[i+1].style.backgroundColor = "#68c653"
+            }
+            else {
+                elms[i+1].style.backgroundColor = "#8b0000"
+                elms[i+1].style.color = "#FFFFFF"
+            }
+        }
+    }
+
+    score = Math.floor(score)
+
+    let db = firebase.default.database()
+    db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${fbUser.uid}`).update({
+        pts: score
+    })
+    setTimeout(() => {
+        questionIdx++
+        if (questionIdx >= globalData.length || sessionStorage.getItem("waitingFinish") == "true")
+        {
+            
+            questionIdx = globalData.length + 1
+            db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${fbUser.uid}`).update({
+                finished: true
+            })
+            
+            if (sessionStorage.getItem("waitingFinish"))
+            {
+                db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${sessionStorage.getItem("opponent")}`).on("value", async (_roomDT) => {
+                    let roomDT = await _roomDT.val()
+                    EndGame(roomDT)
+                })
+            }
+        }
+        else {
+            displayQuestion(questionIdx)
+        }
+    }, 5000)
+    
 }
 
 function displayQuestion(idx:number) {
@@ -86,8 +177,11 @@ function displayQuestion(idx:number) {
     let submitBtn = document.createElement("button")
     submitBtn.innerHTML = "Submit"
     $(submitBtn).addClass("btn")
+    $(submitBtn).attr("onclick", "Submit()")
     $("#questionAnswers").append(submitBtn)
 }
+
+
 
 function numValidate(elm) {
     elm.value = elm.value.replace(/[^\d\-\.]/gmi, "")
@@ -113,6 +207,39 @@ function numValidate(elm) {
     }
 }
 
+function EndGame(roomDT: object) {
+    let db = firebase.default.database()
+    db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${sessionStorage.getItem("opponent")}`).off('value')
+    $("#game").fadeOut(1000)
+    if (roomDT['pts'] < score) {
+        $("#resTxt").html("You Win!")
+        db.ref(`users/${fbUser.uid}`).once('value', async uDT => {
+            let wins = await uDT.val()['wins']
+            db.ref(`users/${fbUser.uid}`).update({
+                wins: wins+1
+            })
+        })
+    }
+    else if (roomDT['pts'] > score) {
+        $("#resTxt").html("You Lose!")
+        db.ref(`users/${fbUser.uid}`).once('value', async uDT => {
+            let loses = await uDT.val()['loses']
+            db.ref(`users/${fbUser.uid}`).update({
+                loses: loses+1
+            })
+        })
+    }
+    else {
+        $("#resTxt").html("It's a tie!")
+    }
+    
+    $("#resScore").html(score.toString())
+    $("#resEnemyScore").html(roomDT['pts'].toString())
+    setTimeout(() => {
+        $("#res").css("display", "initial")
+        
+    }, 1500);
+}
 
 var gameCancelEvent = document.createEvent('Event')
 gameCancelEvent.initEvent('cancelled', true, false)
@@ -120,7 +247,6 @@ gameCancelEvent.initEvent('cancelled', true, false)
 function StartGame(): void {
     let db = firebase.default.database()
     let roomID = getRandomString(6)
-    sessionStorage.setItem("room_id", roomID)
     let freeRoomRef = db.ref('/free_rooms')
     let occupiedRoomRef = db.ref('/occupied_rooms')
     freeRoomRef.once("value", async (snapshot) => {
@@ -134,9 +260,10 @@ function StartGame(): void {
 
             let opponent = Object.keys(host ? dt['participants'] : Object.values(dt)[0]['participants'])
             opponent.splice(opponent.indexOf(fbUser.uid), 1)
-
+            sessionStorage.setItem("opponent", opponent[0])
             if (host) {
                 freeRoomRef.update(JSON.parse(`{"${roomID}": null}`))
+                sessionStorage.setItem("roomID", roomID)
             }
             db.ref(`users/${opponent}`).once('value', async (val) => {
                 let userData = await val.val()
@@ -152,6 +279,22 @@ function StartGame(): void {
                     displayQuestion(0)
                     $('#game').css('display', 'block')
                 }, 2000)
+            })
+            db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${opponent}`).on("value", async (_roomDT) => {
+                let roomDT = await _roomDT.val()
+                $("#enemyPts").html(roomDT['pts'])
+                $("#finished").html(roomDT['finished'] ? "Yes" : "No")
+                if (roomDT['finished'] && questionIdx >= globalData.length) {
+                    EndGame(roomDT) 
+                }
+                else if (roomDT['finished'] && (!sessionStorage.getItem("waitingFinish"))) {
+                    sessionStorage.setItem("waitingFinish", "false")
+                    alert("Opponent has finished! you have 5 minutes to finish too!")
+                    setTimeout(() => {
+                        sessionStorage.setItem("waitingFinish", "true")
+                        Submit()
+                    }, 5 * 60 * 1000)
+                }
             })
 
             
@@ -176,6 +319,7 @@ function StartGame(): void {
                 let dt = await data.val()
                 if (dt != null) {
                     FoundGame(true, cancelled, keepAliveInterval, dt)
+                    occupiedRoomRef.off('value')
                 }
             })
         }
@@ -199,13 +343,14 @@ function StartGame(): void {
                     let dt = await data.val()
                     if (dt != null) {
                         FoundGame(true, cancelled, keepAliveInterval, dt)
+                        occupiedRoomRef.off('value')
                     }
                 })
                 
             }
             else {
                 sessionStorage.setItem("roomID", Object.keys(snapshotDT)[0])
-                let strObj = `{"${Object.keys(snapshotDT)[0]}": {"participants": {"${fbUser.uid}": {"pts": 0}, "${Object.values(snapshotDT)[0]["p1"]}": {"pts": 0}}}}`
+                let strObj = `{"${Object.keys(snapshotDT)[0]}": {"participants": {"${fbUser.uid}": {"pts": 0, "finished": false}, "${Object.values(snapshotDT)[0]["p1"]}": {"pts": 0, "finished": false}}}}`
                 occupiedRoomRef.update(JSON.parse(strObj))
                 FoundGame(false, null, null, JSON.parse(strObj))
             }
