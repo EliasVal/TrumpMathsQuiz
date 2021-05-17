@@ -50,6 +50,17 @@ nav div:nth-child(2) {
   position: absolute;
   right: 0;
 }
+#game #questionsTab #questionContainer #scoreDiv {
+  margin-top: 50px;
+  font-size: x-large;
+}
+#game #questionsTab #questionContainer #scoreDiv > p {
+  margin: 0 auto;
+  display: inline;
+}
+#game #questionsTab #questionContainer #scoreDiv > p p {
+  display: inline;
+}
 #game #questionsTab > div {
   width: 80%;
   margin: 25px auto 0 auto;
@@ -88,6 +99,9 @@ nav div:nth-child(2) {
 }
 #game #questionsTab > div > div button {
   margin-top: 35px;
+}
+#game #questionsTab #wait {
+  display: none;
 }
 #game div {
   margin-top: 25px;

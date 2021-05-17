@@ -52,6 +52,17 @@ nav {
     }
 
     #questionsTab {
+        #questionContainer #scoreDiv {
+            margin-top: 50px;
+            font-size: x-large;
+            > p {
+                margin: 0 auto;
+                display: inline;
+                p {
+                    display: inline;
+                }
+            }
+        }
         > div {
             width: 80%;
             margin: 25px auto 0 auto;
@@ -95,6 +106,9 @@ nav {
                     margin-top: 35px
                 }
             }
+        }
+        #wait {
+            display: none;
         }
         
     }

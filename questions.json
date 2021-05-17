@@ -13,34 +13,6 @@
             "answerType": "multi",
             "answers" : [ [-3, 0], [0, 6], [1, 0]],
             "letters": ["A", "B", "C"]
-        },
-        {
-            "question": "פתרו את המשוואה, רשמו תחום הצבה:",
-            "link": "https://cdn.discordapp.com/attachments/811560585552461844/822950997055635466/unknown.png",
-            "answerType": "x",
-            "answers" : [ 8 ],
-            "notAnswers": [-1, 1, -7, 7]
-        },
-        {
-            "question": "פתרו את המשוואה, רשמו תחום הצבה:",
-            "link": "https://cdn.discordapp.com/attachments/811560585552461844/822949613153288242/unknown.png",
-            "answerType": "x",
-            "answers" : [ 2 ],
-            "notAnswers": [6, -6]
-        },
-        {
-            "question": "במערכת הצירים שלפניכם משורטטים הגרפים של הפונקציות <code>y = -x + 6</code>, <code>y = x&#178; - 5x + 6</code> מה הם שיורי נקודות A, C, D:",
-            "link": "https://cdn.discordapp.com/attachments/811560585552461844/822947945863315516/Capture.PNG",
-            "answerType": "multi",
-            "answers" : [ [0, 6], [2, 0], [3, 0] ],
-            "letters": ["A", "C", "D"]
-        },
-        {
-            "question": "פתרו את המשוואה, רשמו תחום הצבה:",
-            "link": "https://cdn.discordapp.com/attachments/811560585552461844/822952765055696926/unknown.png",
-            "answerType": "x",
-            "answers" : [ 3 ],
-            "notAnswers": [0, -1, 1, -7, 7]
         }
     ]
 }
