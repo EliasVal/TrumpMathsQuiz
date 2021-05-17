@@ -70,7 +70,7 @@ function Submit() {
     }
 
     score = Math.floor(score)
-
+    $("#score").html(score.toString())
     let db = firebase.default.database()
     db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${fbUser.uid}`).update({
         pts: score
@@ -91,6 +91,13 @@ function Submit() {
                     let roomDT = await _roomDT.val()
                     EndGame(roomDT)
                 })
+            }
+            else {
+                $('#questionContainer').fadeOut(1000)
+                $($('#questionsTab').children('h1')[0]).fadeOut(1000)
+                setTimeout(() => {
+                    $("#wait").fadeIn(1000)
+                }, 1500)
             }
         }
         else {
