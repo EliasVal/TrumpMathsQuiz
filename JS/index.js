@@ -11,12 +11,12 @@ firebase.default.initializeApp({
     databaseURL: "https://mathstrump-default-rtdb.europe-west1.firebasedatabase.app",
     appId: "1:534763888909:web:b4b21a3e411e0a09bc1044"
 });
-/*let loginListener = firebase.default.auth().onAuthStateChanged((user) => {
+let loginListener = firebase.default.auth().onAuthStateChanged((user) => {
     if (user) {
-        window.location.pathname = "/main"
+        window.location.pathname = "/main";
     }
     loginListener();
-})*/
+});
 // ALIGN FORM LABELS
 var field = document.getElementById('email_login').offsetLeft - document.getElementById('formCont').offsetLeft;
 var itemArr = document.getElementsByTagName("label");
@@ -60,6 +60,7 @@ function signIn() {
     blockButton_login();
     if (document.getElementById("submit_login").disabled)
         return;
+    $("#submit_login").attr("onclick", "");
     var email = document.getElementById('email_login').value;
     var pass = document.getElementById('password_login').value;
     firebase.default.auth().setPersistence(firebase.default.auth.Auth.Persistence.LOCAL)
@@ -82,6 +83,7 @@ function signIn() {
 function signUp( /*email, password*/) {
     blockButton_signup();
     const submitBtn = document.getElementById("submit_signup");
+    $(submitBtn).attr("onclick", "");
     if (submitBtn.disabled)
         return;
     var email = document.getElementById('email_signup').value;

@@ -34,6 +34,7 @@ nav div:nth-child(2) {
 }
 #game #enemyInfo div {
   width: 25%;
+  min-width: 150px;
   margin: 0 auto;
 }
 #game #enemyInfo div ul {
@@ -136,6 +137,26 @@ vl {
   text-align: left;
 }
 #res div ul li p {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+
+#usrStats {
+  width: 15%;
+  min-width: 150px;
+  margin: 50px auto 0 auto;
+}
+#usrStats ul {
+  margin-top: 25px;
+  position: relative;
+}
+#usrStats ul li {
+  margin-top: 7px;
+  list-style: none;
+  text-align: left;
+}
+#usrStats ul li p {
   display: inline-block;
   position: absolute;
   right: 0;

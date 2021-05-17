@@ -1,4 +1,22 @@
-$("#usrname").html(fbUser.displayName)
+firebase.default.database().ref(`users/${fbUser.uid}`).once('value', async val => {
+    let dt = await val.val()
+    $("#usrname").html(fbUser.displayName)
+    $("#usrWins").html(dt.wins)
+    $("#usrLoses").html(dt.loses)
+
+    let ratio: number | Array<string> | string = dt.wins / (dt.loses >= 1 ? dt.loses : 1)
+    ratio = ratio.toString().split(".")
+    if (!ratio[1]) {
+        ratio[1] = "0"
+    }
+    else {
+        ratio[1] = ratio[1].substr(0, 2)
+    }
+    ratio = ratio.join(".")
+    
+    $("#usrWLR").html(ratio)
+})
+
 sessionStorage.removeItem("waitingFinish")
 
 var globalData: Array<Question>
@@ -278,6 +296,19 @@ function StartGame(): void {
                 $('#loses').html(userData['loses'])
                 $('#wins').html(userData['wins'])
 
+                let ratio: number | Array<string> | string = userData.wins / (userData.loses >= 1 ? userData.loses : 1)
+                ratio = ratio.toString().split(".")
+                if (!ratio[1]) {
+                    ratio[1] = "0"
+                }
+                else {
+                    ratio[1] = ratio[1].substr(0, 2)
+                }
+                ratio = ratio.join(".")
+
+                $('#WLR').html(ratio)
+
+
                 $('#searchGameCommenced').children()[0].innerHTML = 'Opponent found!'
                 $('#searchGameCommenced').children()[1].style.display = 'none'
                 setTimeout(() => {
@@ -296,11 +327,11 @@ function StartGame(): void {
                 }
                 else if (roomDT['finished'] && (!sessionStorage.getItem("waitingFinish"))) {
                     sessionStorage.setItem("waitingFinish", "false")
-                    alert("Opponent has finished! you have 5 minutes to finish too!")
+                    alert("Opponent has finished! you have 7 minutes to finish too!")
                     setTimeout(() => {
                         sessionStorage.setItem("waitingFinish", "true")
                         Submit()
-                    }, 5 * 60 * 1000)
+                    }, 7 * 60 * 1000)
                 }
             })
 

@@ -31,7 +31,16 @@
             <p>Looking for an opponent...</p>
             <a style="margin-top: 30px;" class="btn btn-warn" onclick="dispatchEvent(gameCancelEvent); $('#playBtn').css('display', 'initial'); $('#searchGameCommenced').css('display', 'none')">Cancel Search</a>
         </div>
-        
+        <div id="usrStats">
+            <ul>
+                <li>Your wins: <p id="usrWins">0</p>
+                </li>
+                <li>Your Loses: <p id="usrLoses">0</p>
+                </li>
+                <li>Win/Loss ratio: <p id="usrWLR">0.0</p>
+                </li>
+            </ul>
+        </div>
     </div>
     <div id="game">
         <div id="questionsTab">
@@ -66,6 +75,9 @@
                         Loses: <p id="loses">0</p>
                     </li>
                     <li>
+                        Win/Loss ratio: <p id="WLR">0</p>
+                    </li>
+                    <li>
                         Points: <p id="enemyPts">0</p>
                     </li>
                     <li>
@@ -85,6 +97,9 @@
                 <li>Opponent's score: <p id="resEnemyScore">0</p>
                 </li>
             </ul>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a class="btn btn-confirm" onclick="window.location.reload()">Continue</a>
         </div>
     </div>
 </body>

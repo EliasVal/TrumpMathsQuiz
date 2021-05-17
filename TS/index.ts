@@ -12,12 +12,12 @@ firebase.default.initializeApp({
     appId: "1:534763888909:web:b4b21a3e411e0a09bc1044"
 })
 
-/*let loginListener = firebase.default.auth().onAuthStateChanged((user) => {
+let loginListener = firebase.default.auth().onAuthStateChanged((user) => {
     if (user) {
         window.location.pathname = "/main"
     }
     loginListener();
-})*/
+})
 
 
 
@@ -75,6 +75,8 @@ function signIn() {
 
     if (document.getElementById("submit_login").disabled) return;
 
+    $("#submit_login").attr("onclick", "")
+    
     var email = document.getElementById('email_login').value
     var pass = document.getElementById('password_login').value
 
@@ -106,7 +108,7 @@ function signUp(/*email, password*/) {
     blockButton_signup()
 
     const submitBtn = document.getElementById("submit_signup")
-
+    $(submitBtn).attr("onclick", "")
     if (submitBtn.disabled) return;
 
     var email = document.getElementById('email_signup').value
