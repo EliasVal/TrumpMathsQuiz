@@ -111,7 +111,7 @@ function Submit() {
         else {
             displayQuestion(questionIdx);
         }
-    }, 5000);
+    }, 3000);
 }
 function displayQuestion(idx) {
     $('#questionHeader').html(globalData[idx].question);
@@ -189,6 +189,7 @@ function numValidate(elm) {
 function EndGame(roomDT) {
     let db = firebase.default.database();
     db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}/participants/${sessionStorage.getItem("opponent")}`).off('value');
+    db.ref(`occupied_rooms/${sessionStorage.getItem("roomID")}`).set(null);
     $("#game").fadeOut(1000);
     if (roomDT['pts'] < score) {
         $("#resTxt").html("You Win!");
@@ -300,7 +301,7 @@ function StartGame() {
             });
         }
         else {
-            if (Math.floor((Date.now() - parseInt(Object.values(snapshotDT)[0]["age"])) / 1000) > 10) {
+            if (Math.floor((Date.now() - parseInt(Object.values(snapshotDT)[0]["age"])) / 1000) > 10 || Object.values(snapshotDT)[0]["p1"] == fbUser.uid) {
                 let strObj = `{"${roomID}": {"p1": "${fbUser.uid}", "age": "${Date.now()}"}}`;
                 await freeRoomRef.update(JSON.parse(strObj));
                 let keepAliveInterval = setInterval(() => {
