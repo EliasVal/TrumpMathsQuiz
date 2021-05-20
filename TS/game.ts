@@ -340,7 +340,7 @@ function StartGame(): void {
         }
 
         if (!snapshotDT) {
-            let strObj = `{"${roomID}": {"p1": "${fbUser.uid}", "age": "${Date.now()}"}}`
+            let strObj = `{"${roomID}": {"p1": "${fbUser.uid}", "age": ${Date.now()}}}`
             
             await freeRoomRef.update(JSON.parse(strObj))
             let keepAliveInterval = setInterval(() => {
@@ -364,12 +364,14 @@ function StartGame(): void {
         }
         else {
             if (Math.floor((Date.now() - parseInt(Object.values(snapshotDT)[0]["age"])) / 1000) > 10 || Object.values(snapshotDT)[0]["p1"] == fbUser.uid) {
-                
-                let strObj = `{"${roomID}": {"p1": "${fbUser.uid}", "age": "${Date.now()}"}}`
+                if (Object.values(snapshotDT)[0]["p1"] != fbUser.uid) {
+                    freeRoomRef.update(JSON.parse(`{"${Object.keys(snapshotDT)[0]}": null}`))
+                }
+                let strObj = `{"${roomID}": {"p1": "${fbUser.uid}", "age": ${Date.now()}}}`
                 await freeRoomRef.update(JSON.parse(strObj))
                 let keepAliveInterval = setInterval(() => {
                     freeRoomRef.child(`${roomID}`).update({ age: Date.now().toString() })
-                }, 30 * 1000)
+                }, 5 * 1000)
                 
                 function cancelled() {
                     clearInterval(keepAliveInterval)
